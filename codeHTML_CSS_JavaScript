@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+body
+{
+	background-color:rgba(84, 61, 97, 0.15);
+}
+
+#heading
+{
+  background-color:#808080;
+  color:white;
+  text-align: center; 
+  height: 50px;
+  font-size: 40px;
+  font-style: italic;
+  border-radius: 37px;
+  border-style: double;
+  border-width: 10px;
+  cursor: pointer;
+  word-spacing: 5px;
+  animation-duration: 10s;
+}
+#heading:hover{
+	background-color: red;
+	border-style:dashed solid;
+	border: 2px solid green;
+	background-color: white;
+	color: black;
+
+}
+#buttonplay
+{
+	margin-left: 24%;
+    margin-top: 6%;
+    height: 29px;
+    width: 100px;
+    font-size: 22px;
+    border-radius: 9px;
+    padding-bottom: 27px;
+    border: 2px solid;
+
+    border-radius: 4px;
+  background-color: #f4511e;
+  
+  color: #FFFFFF;
+  text-align: center;
+  
+  
+  box-shadow: 5px 5px 5px white;
+  
+  transition: all 0.5s;
+  cursor: pointer;
+  
+}
+
+
+#buttonplay span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#buttonplay span:after {
+  content: '  -->';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+
+}
+
+#buttonplay:hover span {
+  padding-right: 25px;
+
+}
+
+#buttonplay:hover span:after {
+  opacity: 1;
+  right: 0;
+
+}
+
+.gamearea
+{
+
+	margin-top: 8%;
+    margin-left: 18%;
+    margin-right: 18%;
+    padding-left: 14px;
+    background-color: rgba(27, 234, 127, 0.19);
+    padding-bottom: 10px;
+    border: 5px solid;
+    border-radius: 30px;
+
+}
+.gamearea:hover
+{
+	background-color: #66ff66;
+	
+}
+
+
+
+
+.gamebutton
+{
+	width: 30px;
+	height: 30px;
+	color: white;
+	background-color: black;
+	font-size: 18px;
+	margin-top: 10px;
+	margin-left: px;
+}
+
+	</style>
+	<script type="text/javascript">
+		
+var myShows = ['Bones', 'Psych', 'Big', 'Bang', 'Theory', 'Mad Men', 'Breaking', 'Modern',' Family', 'Thrones','Dexter'];
+
+var show='';
+   show = myShows[Math.floor(Math.random() * myShows.length)];
+var y;
+
+document.write(show);
+
+
+var x = show.length;
+ 
+document.write(x);
+
+function game_start() {
+
+  
+var z='';
+
+for(var i=0;i<x;i++)
+  {
+    
+    z=z+ "<button onclick='word_match()' class='gamebutton' id='bill" +i+"'>*</button>";
+    
+  }
+  
+ document.getElementById('no_button').innerHTML= z;
+
+}
+ 
+ 
+ var keycount=0;
+ 
+window.addEventListener("keypress",checkey);
+  	
+var result=0;
+  
+function checkey(event)
+{
+ 	keycount=keycount+1;
+  	
+  	 if(keycount<=x)
+       {
+	var a=event.charCode;
+  	//console.log(a);
+  	document.getElementById('demo1').innerHTML='wrong input';
+        
+   for(var i=0;i<=x;i++)
+  						{  
+                          
+                          
+    //console.log(i);
+  var res=show.charCodeAt(i);
+	  if(res < 97)
+        {
+          res=res +32;
+        }
+         
+
+if(a==res)
+     {
+       result=result+1;
+
+      y = String.fromCharCode(a);
+       document.getElementById('demo1').innerHTML="KEY MATCH";
+       document.getElementById('bill'+i).innerHTML= y;
+         if(result==x)
+         {
+
+            document.getElementById('result').innerHTML='you win!';
+         }
+         
+      }
+
+  }0
+
+  		}
+
+  		else
+  		{
+  		document.getElementById('demo3').innerHTML="LIMIT EXPIRE";	
+      if (result<=x) {
+        document.getElementById('result').innerHTML='sorry! you loss';
+      }
+
+  		}
+}
+
+	</script>
+</head>
+<body>
+
+
+
+<h1 id='heading'>KEY - drama</h1>
+
+<p id="demo"></p>
+<div class="gamearea">
+ <button onclick="game_start()" id="buttonplay">
+<span>
+ play
+</span>
+ </button>
+<div id="no_button">
+</div>
+<div id="demo1"></div>
+<p id="demo3"></p>
+
+<p id="result"></p>
+</div>
+</body>
+</html>
